@@ -1,7 +1,0 @@
-com/klef/dev/entity/Task.class
-com/klef/dev/controller/TaskController.class
-com/klef/dev/config/SwaggerConfig.class
-com/klef/dev/repository/TaskRepository.class
-com/klef/dev/entity/Task$Priority.class
-com/klef/dev/service/TaskService.class
-com/klef/dev/SpringbootbackendApplication.class
