@@ -1,0 +1,36 @@
+services:
+  mysqldb:
+    container_name: mysql-db
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: docker
+      MYSQL_DATABASE: studentdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql   # volume added here
+
+  backend:
+    container_name: springboot
+    build:
+      context: ./STUDENTAPI-SPRINGBOOT
+      dockerfile: ../STUDENTAPI-FULLSTACK/backend.Dockerfile
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mysqldb
+    restart: on-failure
+
+  frontend:
+    container_name: react
+    build:
+      context: ./STUDENTAPI-REACT
+      dockerfile: ../STUDENTAPI-FULLSTACK/frontend.Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+# Declare volumes at the bottom
+volumes:
+  mysql-data:
